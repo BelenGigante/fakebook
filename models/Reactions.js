@@ -28,4 +28,13 @@ const ReactionsSchema = new Schema(
             default: Date.now,
         },
     },
-)
+    {
+        toJSON: {
+            getters:true
+        }
+    },
+);
+
+const Reactions = model('Reactions', ReactionsSchema);
+
+module.exports = Reactions;
