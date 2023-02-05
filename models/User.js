@@ -1,6 +1,6 @@
-const { Schema, model } = require('mongoose');
+const { Schema, Types , model } = require('mongoose');
 
-const usersSchema = new Schema(
+const userSchema = new Schema(
     {
         username: {
             type: String,
@@ -12,20 +12,18 @@ const usersSchema = new Schema(
             type: String,
             unique: true,
             required: true,
-            trim: true
-            //match: ^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$,
+            trim: true,
+            match:[/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, 'Must match email add'],
         },
-        thoughts: [
+        thoughts:[
             {
                 type: Schema.Types.ObjectId,
-                ref: 'Thoughts'
-            }
-        ],
-        friends: [
+                ref: 'Thought',
+            },
             {
                 type: Schema.Types.ObjectId,
-                ref: 'Users'
-            }
+                ref: 'reactionSchema',
+            },
         ],
     },
     {
@@ -37,6 +35,6 @@ const usersSchema = new Schema(
     }
 );
 
-const Users = model('Users', usersSchema);
+const User = model('User', userSchema);
 
-module.exports = Users;
+module.exports = User;
