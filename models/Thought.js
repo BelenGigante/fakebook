@@ -28,5 +28,9 @@ const thoughtSchema = new Schema(
     },
 );
 
-const Thought = model('Thought', thoughtSchema);
+thoughtSchema.virtual('reactionLength').get(function(){
+    return this.reactions.length;
+})
+
+const Thought = model('thought', thoughtSchema);
 module.exports = Thought;
