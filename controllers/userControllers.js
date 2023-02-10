@@ -38,7 +38,7 @@ module.exports = {
     },
 
     deleteUser(req, res) {
-        User.findByIdAndRemove({_id: req.params.id })
+        User.findByIdAndRemove(req.params.id )
             .then((user) => !user ? res.status(404).json({ message: 'User not found' })
                 : Thought.findByIdAndUpdate(
                     { user: req.params.id },
